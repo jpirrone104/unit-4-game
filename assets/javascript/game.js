@@ -17,29 +17,29 @@ var yourOpponent;
     //Objects holding the players
             var player1 = {
                 Name: "Automation",
-                Health: 140,
-                Damage: 10,
+                Health: 160,
+                Damage: 15,
                 Image: "assets/images/robot.png",
 
             };
 
             var player2 = {
                 Name: "Consumerism",
-                Health: 150,
-                Damage: 8,
+                Health: 110,
+                Damage: 5,
                 Image: "assets/images/kitty.png",
             };
 
             var player3 = {
                 Name: "Social Media",
-                Health: 175,
-                Damage: 5,
+                Health: 140,
+                Damage: 10,
                 Image: "assets/images/wolf.png",
             };
 
             var player4 = {
                 Name: "Climate Change",
-                Health: 130,
+                Health: 175,
                 Damage: 12,
                 Image: "assets/images/bunny.jpg",
              };
@@ -47,8 +47,7 @@ var yourOpponent;
             //reset game variables
             availablePlayers = [player1, player2, player3, player4];
             yourPlayer = null;
-            opponents = [];
-            yourOpponent = null;
+        
 
             //clear all game play DIVs
             $("#yourPlayer").empty();
@@ -56,19 +55,45 @@ var yourOpponent;
             $("#opponents").empty();
              
             $.each(availablePlayers, function(index, yourPlayer) {
-                var availPlayerDiv = $("<div>").addClass("yourPlayer panel").attr("id", yourPlayer.id);
+                var availPlayerDiv = $("<div>").addClass("player panel panel-success").attr("id", yourPlayer.id);
 
                 $("#availablePlayers").append(availPlayerDiv);
-                $("<div>").addClass("panel-heading").html(yourPlayer.Name).appendTo(availPlayerDiv);
+                $("<div>").addClass("panel-heading").append(yourPlayer.Name).appendTo(availPlayerDiv);
                 $("<div>").addClass("panel-body").append("<img src=" + yourPlayer.Image + ">").appendTo(availPlayerDiv);
                 $("<div>").addClass("panel-footer").append(yourPlayer.Health).appendTo(availPlayerDiv);
 
               
 
             });
-            }     
-startGame();
-})
+            $(".player").on("click", function() {
+                // alert("you clicked a thing" );
+                if(yourPlayer === null) {
+                    yourPlayer = $(this)
+                    $("#yourPlayer").append($(this));
+                    availablePlayers.splice($.inArray($(this), availablePlayers), 1);
+                    console.log(yourPlayer);
+                    console.log(availablePlayers);
+                } else {$.each(availablePlayers, function(){
+                   
+                });
+            }
+            
+                                      // $.each(availablePlayers, function(index, yourPlayer){
+                    //     if(yourPlayer.id !== playerId) {
+                    //         opponents.push(yourPlayer);
+                    //     } else {
+                    //         $("#" + yourPlayer.id).appendTo("yourPlayer");
+                    //     }
+                    // });
+                
+                });
+            }
+            startGame();
+        });
+
+                
+
+
 
 
 

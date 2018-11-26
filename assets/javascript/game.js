@@ -44,10 +44,13 @@ var yourOpponent;
                 Image: "https://via.placeholder.com/150"
              };
             
-            availablePlayers = [];
+            availablePlayers = [player1, player2, player3, player4];
             yourPlayer = null;
             opponents = [];
             yourOpponent = null;
+
+            $("#yourPlayer").empty();
+            $("#opponents").empty();
              
             }     
 

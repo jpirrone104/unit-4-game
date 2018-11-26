@@ -9,32 +9,43 @@
         <script src="assets/javascript/game.js"></script>
     </head>
     <body>
-        <h1>RPG Game</h1>
         <div class="container">
-                <h1 id="mainTitle">Star Wars RPG</h1>
+                <h1 id="mainTitle">Fight the Future RPG</h1>
             </div>
             <div class="container restart">
                 <div class="row">
                  <div id="availablePlayers">
-                     <div class="title">Pick your Character</div>
+                     <div class="title"><h3>Choose your Player</h3></div>
                         </div>
                  </div>
                 </div>
             </div>
-        
-            <!-- Both your character and the enemy -->
             <div class="container">
                 <div class="row">
-                    <div class="col-5" id="yourPlayer"></div>
-                    <div class="col-2" id="fightButton"></div>
-                    <div class="col-5" id="yourOpponent"></div>
+                    <h3>Your Affliction</h3>
+                    <div id="yourPlayer"></div>
                 </div>
             </div>
-        
-            <!-- Append remaining enemies here until -->
             <div class="container">
                 <div class="row">
+                    <h3>Afflictions Available to Attack</h3> 
                     <div id="opponents"></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <h3>Fight Section</h3>
+                </div>
+                <div class="row">
+                    <button id="fightbutton">Attack</button>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <h3>Your Current Opponent</h3>
+                </div>
+                <div class="row">
+                    <div id="yourOpponent"></div>
                 </div>
             </div>
         

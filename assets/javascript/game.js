@@ -16,7 +16,7 @@ var yourOpponent;
     function startGame() {
     //Objects holding the players
             var player1 = {
-                Name: "Player 1",
+                Name: "Automation",
                 Health: 140,
                 Damage: 10,
                 Image: "assets/images/robot.png",
@@ -24,21 +24,21 @@ var yourOpponent;
             };
 
             var player2 = {
-                Name: "Player 2",
+                Name: "Consumerism",
                 Health: 150,
                 Damage: 8,
                 Image: "assets/images/kitty.png",
             };
 
             var player3 = {
-                Name: "Player 3",
+                Name: "Social Media",
                 Health: 175,
                 Damage: 5,
                 Image: "assets/images/wolf.png",
             };
 
             var player4 = {
-                Name: "Player 4",
+                Name: "Climate Change",
                 Health: 130,
                 Damage: 12,
                 Image: "assets/images/bunny.jpg",
@@ -52,6 +52,7 @@ var yourOpponent;
 
             //clear all game play DIVs
             $("#yourPlayer").empty();
+            $("#yourOpponent").empty();
             $("#opponents").empty();
              
             $.each(availablePlayers, function(index, yourPlayer) {

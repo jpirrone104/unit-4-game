@@ -19,7 +19,7 @@ var yourOpponent;
                 Name: "Player 1",
                 Health: 140,
                 Damage: 10,
-                Image: "https://via.placeholder.com/150"
+                Image: "https://via.placeholder.com/150",
 
             };
 
@@ -27,34 +27,48 @@ var yourOpponent;
                 Name: "Player 2",
                 Health: 150,
                 Damage: 8,
-                Image: "https://via.placeholder.com/150"
+                Image: "https://via.placeholder.com/150",
             };
 
             var player3 = {
                 Name: "Player 3",
                 Health: 175,
                 Damage: 5,
-                Image: "https://via.placeholder.com/150"
+                Image: "https://via.placeholder.com/150",
             };
 
             var player4 = {
                 Name: "Player 4",
                 Health: 130,
                 Damage: 12,
-                Image: "https://via.placeholder.com/150"
+                Image: "https://via.placeholder.com/150",
              };
             
+            //reset game variables
             availablePlayers = [player1, player2, player3, player4];
             yourPlayer = null;
             opponents = [];
             yourOpponent = null;
 
+            //clear all game play DIVs
             $("#yourPlayer").empty();
             $("#opponents").empty();
              
-            }     
+            $.each(availablePlayers, function(index, yourPlayer) {
+                var availPlayerDiv = $("<div>").attr("id", yourPlayer.id);
 
-}
+                $("#availablePlayers").append(availPlayerDiv);
+                $("<div>").html(yourPlayer.name).appendTo(availPlayerDiv);
+                $("<div>").append("<img src=" + yourPlayer.img + ">").appendTo(availPlayerDiv);
+                $("<div>").append(yourPlayer.healthPoints).appendTo(availPlayerDiv);
+
+              
+
+            });
+            }     
+startGame();
+})
+
 
 
 //Game variables to hold the attack, the player position, and function names

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery RPG</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="assets/javascript/game.js"></script>
+    </head>
+    <body>
+        <h1>RPG Game</h1>
+        <div class="container">
+                <h1 id="mainTitle">Star Wars RPG</h1>
+            </div>
+            <div class="container restart">
+                <div class="row">
+                 <div id="characters">
+                     <div class='title'>Pick your Character</div>
+                        <div class ="row">
+                            <div class="col">
+                                <img src="https://via.placeholder.com/150">
+                                <img src="https://via.placeholder.com/150">
+                                <img src="https://via.placeholder.com/150">
+                                <img src="https://via.placeholder.com/150">
+                            </div>
+                        </div>
+                 </div>
+                </div>
+            </div>
+        
+            <!-- Both your character and the enemy -->
+            <div class='container'>
+                <div class='row'>
+                    <div class='col-md-5' id="yourCharacter"></div>
+                    <div class='col-md-2' id="fightButton"></div>
+                    <div class='col-md-5' id="currentEnemy"></div>
+                </div>
+            </div>
+        
+            <!-- Append remaining enemies here until -->
+            <div class='container'>
+                <div class='row'>
+                    <div id='remainingEnemies'></div>
+                </div>
+            </div>
+        
+    </body>
+</html>

@@ -19,7 +19,7 @@ var yourOpponent;
                 Name: "Player 1",
                 Health: 140,
                 Damage: 10,
-                Image: "https://via.placeholder.com/150",
+                Image: "assets/images/robot.png",
 
             };
 
@@ -27,21 +27,21 @@ var yourOpponent;
                 Name: "Player 2",
                 Health: 150,
                 Damage: 8,
-                Image: "https://via.placeholder.com/150",
+                Image: "assets/images/kitty.png",
             };
 
             var player3 = {
                 Name: "Player 3",
                 Health: 175,
                 Damage: 5,
-                Image: "https://via.placeholder.com/150",
+                Image: "assets/images/wolf.png",
             };
 
             var player4 = {
                 Name: "Player 4",
                 Health: 130,
                 Damage: 12,
-                Image: "https://via.placeholder.com/150",
+                Image: "assets/images/bunny.jpg",
              };
             
             //reset game variables
@@ -55,12 +55,12 @@ var yourOpponent;
             $("#opponents").empty();
              
             $.each(availablePlayers, function(index, yourPlayer) {
-                var availPlayerDiv = $("<div>").attr("id", yourPlayer.id);
+                var availPlayerDiv = $("<div>").addClass("yourPlayer panel").attr("id", yourPlayer.id);
 
                 $("#availablePlayers").append(availPlayerDiv);
-                $("<div>").html(yourPlayer.name).appendTo(availPlayerDiv);
-                $("<div>").append("<img src=" + yourPlayer.img + ">").appendTo(availPlayerDiv);
-                $("<div>").append(yourPlayer.healthPoints).appendTo(availPlayerDiv);
+                $("<div>").addClass("panel-heading").html(yourPlayer.Name).appendTo(availPlayerDiv);
+                $("<div>").addClass("panel-body").append("<img src=" + yourPlayer.Image + ">").appendTo(availPlayerDiv);
+                $("<div>").addClass("panel-footer").append(yourPlayer.Health).appendTo(availPlayerDiv);
 
               
 

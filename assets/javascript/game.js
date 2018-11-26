@@ -1,33 +1,55 @@
 //Ready the DOM on page load
 
 $(document).ready(function() {
-//Objects holding the players
 
-var player1 = {
-    Name: "Player 1",
-    Health: 140,
-    Damage: 10,
+//Global Variables
 
-};
+var player1;
+var player2;
+var player3;
+var player4;
+var availablePlayers;
+var yourPlayer;
+var opponents;
+var yourOpponent;
 
-var player2 = {
-    Name: "Player 2",
-    Health: 150,
-    Damage: 8,
-};
+    function startGame() {
+    //Objects holding the players
+            var player1 = {
+                Name: "Player 1",
+                Health: 140,
+                Damage: 10,
+                Image: "https://via.placeholder.com/150"
 
-var player3 = {
-    Name: "Player 3",
-    Health: 175,
-    Damage: 5,
-};
+            };
 
-var player4 = {
-    Name: "Player 4",
-    Health: 130,
-    Damage: 12,
-};
+            var player2 = {
+                Name: "Player 2",
+                Health: 150,
+                Damage: 8,
+                Image: "https://via.placeholder.com/150"
+            };
 
+            var player3 = {
+                Name: "Player 3",
+                Health: 175,
+                Damage: 5,
+                Image: "https://via.placeholder.com/150"
+            };
+
+            var player4 = {
+                Name: "Player 4",
+                Health: 130,
+                Damage: 12,
+                Image: "https://via.placeholder.com/150"
+             };
+            
+            availablePlayers = [];
+            yourPlayer = null;
+            opponents = [];
+            yourOpponent = null;
+             
+            }     
 
 }
 

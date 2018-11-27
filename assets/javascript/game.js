@@ -10,7 +10,7 @@ var player3;
 var player4;
 var availablePlayers;
 var yourPlayer;
-var opponents;
+var opponents = [];
 var yourOpponent;
 
     function startGame() {
@@ -47,15 +47,16 @@ var yourOpponent;
             //reset game variables
             availablePlayers = [player1, player2, player3, player4];
             yourPlayer = null;
+            opponents = [];
         
 
             //clear all game play DIVs
             $("#yourPlayer").empty();
             $("#yourOpponent").empty();
-            $("#opponents").empty();
+            $("#enemies").empty();
              
             $.each(availablePlayers, function(index, yourPlayer) {
-                var availPlayerDiv = $("<div>").addClass("player panel panel-success").attr("id", yourPlayer.id);
+                var availPlayerDiv = $("<div>").addClass("player panel panel-success").attr("id", yourPlayer.Name);
 
                 $("#availablePlayers").append(availPlayerDiv);
                 $("<div>").addClass("panel-heading").append(yourPlayer.Name).appendTo(availPlayerDiv);
@@ -65,18 +66,26 @@ var yourOpponent;
               
 
             });
+
             $(".player").on("click", function() {
-                // alert("you clicked a thing" );
-                if(yourPlayer === null) {
-                    yourPlayer = $(this)
+                if(yourPlayer == null) {
+                    yourPlayer = $(this);
+                    var playerId = ($(this).attr("id"));
+                    yourPlayer = availablePlayers[playerId];
                     $("#yourPlayer").append($(this));
-                    availablePlayers.splice($.inArray($(this), availablePlayers), 1);
-                    console.log(yourPlayer);
-                    console.log(availablePlayers);
-                } else {$.each(availablePlayers, function(){
-                   
+                    // console.log(this);
+                }
+
+                $.each(availablePlayers, function(index, yourPlayer){
+                        if(yourPlayer.id !== playerId) {
+                            opponents.push(yourPlayer);
+                           $("#"+yourPlayer.id).append("#enemies");
+                        } else{
+                            $("#"+yourPlayer.id).append("#yourPlayer");
+                        }
+                   console.log(playerId);
                 });
-            }
+            });
             
                                       // $.each(availablePlayers, function(index, yourPlayer){
                     //     if(yourPlayer.id !== playerId) {
@@ -86,8 +95,7 @@ var yourOpponent;
                     //     }
                     // });
                 
-                });
-            }
+        }
             startGame();
         });
 

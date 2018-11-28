@@ -68,23 +68,34 @@ var yourOpponent;
             });
 
             $(".player").on("click", function() {
-                if(yourPlayer == null) {
-                    yourPlayer = $(this);
-                    var playerId = ($(this).attr("id"));
-                    yourPlayer = availablePlayers[playerId];
-                    $("#yourPlayer").append($(this));
-                    // console.log(this);
-                }
+                yourPlayer = $(this);
+                $("#yourPlayer").append(yourPlayer);
+                console.log($(this));
+                playerName = ($(this)).object
 
-                $.each(availablePlayers, function(index, yourPlayer){
-                        if(yourPlayer.id !== playerId) {
-                            opponents.push(yourPlayer);
-                           $("#"+yourPlayer.id).append("#enemies");
-                        } else{
-                            $("#"+yourPlayer.id).append("#yourPlayer");
-                        }
-                   console.log(playerId);
-                });
+                $("#enemies").append
+                var indexRemove = availablePlayers.indexOf(yourPlayer)
+                availablePlayers.splice($.inArray(indexRemove, availablePlayers), 1);
+
+                console.log(availablePlayers);
+
+                // if(yourPlayer == null) {
+                //     yourPlayer = $(this);
+                //     var playerId = ($(this).attr("id"));
+                    
+                //     $("#yourPlayer").append($(this));
+                //     // console.log(this);
+                // }
+
+                // $.each(availablePlayers, function(index, yourPlayer){
+                //         if(yourPlayer.id !== playerId) {
+                //             opponents.push(yourPlayer);
+                //            $("#"+yourPlayer.id).append("#enemies");
+                //         } else{
+                //             $("#"+yourPlayer.id).append("#yourPlayer");
+                //         }
+                //    console.log(playerId);
+                // });
             });
             
                                       // $.each(availablePlayers, function(index, yourPlayer){

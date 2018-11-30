@@ -69,7 +69,7 @@ var yourOpponent;
                     
 
                 });
-                $(".player").on("click", function() {
+                $(document).on("click", ".player", function() {
                     if(yourPlayer === null) {
                         yourPlayer = $(this);
                         $(yourPlayer).attr("class", "inPlay");
@@ -88,8 +88,24 @@ var yourOpponent;
                     }
                         //replace available player div with opponents div
             
-                        // $(".title").html("<h3>Pick your First Opponent<h3>")
+                        $(".title").html("<h3>Pick your First Opponent<h3>")
             
+                    });
+
+                    $(document).on("click", ".remaining", function () {
+                        if(yourOpponent === null) {
+                            yourOpponent = $(this);
+                            $(yourOpponent).attr("class", "battleMe")
+                            $("#yourOpponent").append(yourOpponent);
+                            console.log(enemy);
+                            console.log($(this));
+                
+                            //replace available player div with opponents div
+                
+                         
+                            //update background color or some other element that shows a difference
+                            //center images
+                        }
                     });
                     
     }
@@ -98,24 +114,9 @@ var yourOpponent;
    
 
 
-            $(".remaining").on("click", function () {
-                var enemy = null
-                if(enemy === null) {
-                    enemey = $(this);
-                    $(enemy).attr("class", "battleMe")
-                    $("#yourOpponent").append(enemy);
-                    console.log(enemy);
-                    console.log($(this));
-        
-                    //replace available player div with opponents div
-        
-                 
-                    //update background color or some other element that shows a difference
-                    //center images
-                }
-            });
+           
                 
-     
+
             
         });
 

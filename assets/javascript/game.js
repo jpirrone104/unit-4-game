@@ -21,6 +21,7 @@ var yourOpponent;
                 Health: 160,
                 Damage: 15,
                 Image: "assets/images/robot.png",
+                Power: "Assembly Line Robot",
 
             };
 
@@ -29,6 +30,7 @@ var yourOpponent;
                 Health: 110,
                 Damage: 5,
                 Image: "assets/images/kitty.png",
+                Power: "Crushing Debt",
             };
 
             var player3 = {
@@ -36,6 +38,7 @@ var yourOpponent;
                 Health: 140,
                 Damage: 10,
                 Image: "assets/images/wolf.png",
+                Power: "FOMO",
             };
 
             var player4 = {
@@ -43,6 +46,7 @@ var yourOpponent;
                 Health: 175,
                 Damage: 12,
                 Image: "assets/images/bunny.jpg",
+                Power: "Rising Sea Levels",
              };
             
             //reset game variables

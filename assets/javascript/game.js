@@ -13,6 +13,7 @@ var yourPlayer;
 var opponents = [];
 var yourOpponent;
 
+
     function startGame() {
     //Objects holding the players
             var player1 = {
@@ -47,6 +48,7 @@ var yourOpponent;
             //reset game variables
             availablePlayers = [player1, player2, player3, player4];
             yourPlayer = null;
+            yourOpponent = null;
             opponents = [];
         
 
@@ -54,63 +56,70 @@ var yourOpponent;
             $("#yourPlayer").empty();
             $("#yourOpponent").empty();
             $("#enemies").empty();
-             
-            $.each(availablePlayers, function(index, yourPlayer) {
-                var availPlayerDiv = $("<div>").addClass("player panel panel-success").attr("id", yourPlayer.Name);
 
-                $("#availablePlayers").append(availPlayerDiv);
-                $("<div>").addClass("panel-heading").append(yourPlayer.Name).appendTo(availPlayerDiv);
-                $("<div>").addClass("panel-body").append("<img src=" + yourPlayer.Image + ">").appendTo(availPlayerDiv);
-                $("<div>").addClass("panel-footer").append(yourPlayer.Health).appendTo(availPlayerDiv);
+            // function addPlayers() {
+                $.each(availablePlayers, function(index, yourPlayer) {
 
-              
-
-            });
-
-            $(".player").on("click", function() {
-                yourPlayer = $(this);
-                $("#yourPlayer").append(yourPlayer);
-                console.log($(this));
-                playerName = ($(this)).object
-
-                $("#enemies").append
-                var indexRemove = availablePlayers.indexOf(yourPlayer)
-                availablePlayers.splice($.inArray(indexRemove, availablePlayers), 1);
-
-                console.log(availablePlayers);
-
-                // if(yourPlayer == null) {
-                //     yourPlayer = $(this);
-                //     var playerId = ($(this).attr("id"));
-                    
-                //     $("#yourPlayer").append($(this));
-                //     // console.log(this);
-                // }
-
-                // $.each(availablePlayers, function(index, yourPlayer){
-                //         if(yourPlayer.id !== playerId) {
-                //             opponents.push(yourPlayer);
-                //            $("#"+yourPlayer.id).append("#enemies");
-                //         } else{
-                //             $("#"+yourPlayer.id).append("#yourPlayer");
-                //         }
-                //    console.log(playerId);
-                // });
-            });
             
-                                      // $.each(availablePlayers, function(index, yourPlayer){
-                    //     if(yourPlayer.id !== playerId) {
-                    //         opponents.push(yourPlayer);
-                    //     } else {
-                    //         $("#" + yourPlayer.id).appendTo("yourPlayer");
-                    //     }
-                    // });
+                    var availPlayerDiv = $("<div>").addClass("player panel panel-success").attr("data", yourPlayer.Name);
+                    $("#availablePlayers").append(availPlayerDiv);
+                    $("<div>").addClass("panel-heading").append(yourPlayer.Name).appendTo(availPlayerDiv);
+                    $("<div>").addClass("panel-body").append("<img src=" + yourPlayer.Image + ">").appendTo(availPlayerDiv);
+                    $("<div>").addClass("panel-footer").append(yourPlayer.Health).appendTo(availPlayerDiv);
+                    
+
+                });
+                $(".player").on("click", function() {
+                    if(yourPlayer === null) {
+                        yourPlayer = $(this);
+                        $(yourPlayer).attr("class", "inPlay");
+                        $("#yourPlayer").append(yourPlayer);
+            
+                        //append new class to remaining characters
+                        $("#availablePlayers").each(function updateRemaining(){
+                           var remainingPlayers = $(this).find(".player");
+                           console.log(remainingPlayers);
+                            $(remainingPlayers).attr("class","remaining");
+                        
+                            
+                        });
+                       
+                        
+                    }
+                        //replace available player div with opponents div
+            
+                        // $(".title").html("<h3>Pick your First Opponent<h3>")
+            
+                    });
+                    
+    }
+        
+    startGame();  
+   
+
+
+            $(".remaining").on("click", function () {
+                var enemy = null
+                if(enemy === null) {
+                    enemey = $(this);
+                    $(enemy).attr("class", "battleMe")
+                    $("#yourOpponent").append(enemy);
+                    console.log(enemy);
+                    console.log($(this));
+        
+                    //replace available player div with opponents div
+        
+                 
+                    //update background color or some other element that shows a difference
+                    //center images
+                }
+            });
                 
-        }
-            startGame();
+     
+            
         });
 
-                
+           //Fight alert     
 
 
 

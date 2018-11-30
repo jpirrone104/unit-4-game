@@ -97,7 +97,6 @@ var yourOpponent;
                             yourOpponent = $(this);
                             $(yourOpponent).attr("class", "battleMe")
                             $("#yourOpponent").append(yourOpponent);
-                            console.log(enemy);
                             console.log($(this));
                 
                             //replace available player div with opponents div

@@ -17,6 +17,7 @@ var yourOpponent;
     function startGame() {
     //Objects holding the players
             var player1 = {
+                Id: 1,
                 Name: "Automation",
                 Health: 160,
                 Damage: 15,
@@ -27,6 +28,7 @@ var yourOpponent;
             };
 
             var player2 = {
+                Id: 2,
                 Name: "Consumerism",
                 Health: 110,
                 Damage: 5,
@@ -36,6 +38,7 @@ var yourOpponent;
             };
 
             var player3 = {
+                Id: 3,
                 Name: "Social Media",
                 Health: 140,
                 Damage: 10,
@@ -45,6 +48,7 @@ var yourOpponent;
             };
 
             var player4 = {
+                Id: 4,
                 Name: "Climate Change",
                 Health: 175,
                 Damage: 12,
@@ -69,7 +73,7 @@ var yourOpponent;
                 $.each(availablePlayers, function(index, yourPlayer) {
 
             
-                    var availPlayerDiv = $("<div>").addClass("player panel panel-success").attr("data", yourPlayer.Name);
+                    var availPlayerDiv = $("<div>").addClass("player panel panel-success").attr("Id", yourPlayer.Id);
                     $("#availablePlayers").append(availPlayerDiv);
                     $("<div>").addClass("panel-heading").append(yourPlayer.Name).appendTo(availPlayerDiv);
                     $("<div>").addClass("panel-body").append("<img src=" + yourPlayer.Image + ">").appendTo(availPlayerDiv);
@@ -79,17 +83,31 @@ var yourOpponent;
                 });
                 $(document).on("click", ".player", function() {
                     if(yourPlayer === null) {
-                        yourPlayer = $(this);
-                        $(yourPlayer).attr("class", "inPlay");
-                        $("#yourPlayer").append(yourPlayer);
-                        //append new class to remaining characters
-                        $("#availablePlayers").each(function updateRemaining(){
-                           var remainingPlayers = $(this).find(".player");
-                           console.log(remainingPlayers);
-                            $(remainingPlayers).attr("class","remaining");
+                        var charId = parseInt($(this).attr("Id"));
+
+                        yourPlayer = availablePlayers[charId];
                         
+                        $.each(availablePlayers, function(index, yourPlayer) {
+                            if(yourPlayer.Id !== charId) {
+                                $("#"+yourPlayer.Id).removeClass("player").addClass("remaining");
+                                alert("#"+yourPlayer.Id);
+                            } else {
+                                $("#"+yourPlayer.Id).removeClass("player").addClass("inPlay").appendTo("#yourPlayer");
+                            }
                             
                         });
+
+                        // yourPlayer = $(this);
+                        // $(yourPlayer).attr("class", "inPlay");
+                        // $("#yourPlayer").append(yourPlayer);
+                        // //append new class to remaining characters
+                        // $("#availablePlayers").each(function updateRemaining(){
+                        //    var remainingPlayers = $(this).find(".player");
+                        //    console.log(remainingPlayers);
+                        //     $(remainingPlayers).attr("class","remaining");
+                        
+                            
+                    
                        
                                        
                     }

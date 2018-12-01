@@ -103,22 +103,23 @@ var wins = 0;
 
                                     //update health for your opponent
                                     yourOpponent.Health -= yourPlayer.Damage;
-                                    yourPlayer.Damage += yourPlayer.Damage;
+                                    // yourPlayer.Damage += yourPlayer.Damage;
                                     
                                     //update health on the DOM 
                                     $("#yourOpponent").find(".panel-footer").html("Health: " + yourOpponent.Health);                                
                                 
                                     //update status and attack messages
                                     $("#yourPlayerMessage").html(yourOpponent.Name + " used " + yourOpponent.ScourgePower + " for " + yourOpponent.scourgeDamage + " damage ");
-                                } else if (yourOpponent.Health <= 0) {
-                                    yourOpponent === null;
-                                  
+
+                                    //update your attack damage for next hit
+                                    yourPlayer.Damage += yourPlayer.Damage;
+
+                                } else if (yourOpponent.Health <= 0 && yourPlayer.Health > 0) {
                                     $(".battleMe").hide();
-                                    $("#yourOpponentMessage").html("<h3>You are one step closer - Please select another scourge to defeat!</h3>")
-
+                                    $("#yourOpponentMessage").html("<h3>You are one step closer - Please select another scourge to defeat!</h3>");
+                                    yourOpponent = null;
+                                    console.log(yourOpponent);
                                 }
-                            
-
                             if(yourPlayer.Health <= 0) {
                                 alert("You Lose!");
                             }

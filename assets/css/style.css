@@ -1,4 +1,13 @@
-.panel, .remaining {
+.container {
+    text-align: center;
+    align-items: center;
+}
+
+.panel, .remaining, #availablePlayers, #choose {
     display: inline-block;
     
+
 }
+/* #battleground {
+    margin-top: 10%;
+} */

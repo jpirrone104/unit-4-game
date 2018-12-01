@@ -21,7 +21,8 @@ var yourOpponent;
                 Health: 160,
                 Damage: 15,
                 Image: "assets/images/robot.png",
-                Power: "Assembly Line Robot",
+                ScourgePower: "Layoffs",
+                WeaponPower: "Renewable Energy",
 
             };
 
@@ -30,7 +31,8 @@ var yourOpponent;
                 Health: 110,
                 Damage: 5,
                 Image: "assets/images/kitty.png",
-                Power: "Crushing Debt",
+                ScourgePower: "Crushing Debt",
+                WeaponPower: "Booming Economy",
             };
 
             var player3 = {
@@ -38,7 +40,8 @@ var yourOpponent;
                 Health: 140,
                 Damage: 10,
                 Image: "assets/images/wolf.png",
-                Power: "FOMO",
+                ScourgePower: "FOMO",
+                WeaponPower: "Retweet",
             };
 
             var player4 = {
@@ -46,7 +49,8 @@ var yourOpponent;
                 Health: 175,
                 Damage: 12,
                 Image: "assets/images/bunny.jpg",
-                Power: "Rising Sea Levels",
+                ScourgePower: "Catastrophic Weather",
+                WeaponPower: "Rising Sea Levels",
              };
             
             //reset game variables
@@ -78,7 +82,6 @@ var yourOpponent;
                         yourPlayer = $(this);
                         $(yourPlayer).attr("class", "inPlay");
                         $("#yourPlayer").append(yourPlayer);
-            
                         //append new class to remaining characters
                         $("#availablePlayers").each(function updateRemaining(){
                            var remainingPlayers = $(this).find(".player");
@@ -88,11 +91,11 @@ var yourOpponent;
                             
                         });
                        
-                        
+                                       
                     }
                         //replace available player div with opponents div
             
-                        $(".title").html("<h3>Pick your First Opponent<h3>")
+                        $(".title").html("<h3>Select a Scourge to Destroy<h3>")
             
                     });
 
@@ -101,9 +104,12 @@ var yourOpponent;
                             yourOpponent = $(this);
                             $(yourOpponent).attr("class", "battleMe")
                             $("#yourOpponent").append(yourOpponent);
+                            
+                            
                             console.log($(this));
                 
-                            //replace available player div with opponents div
+                            //replace opponents div with remaining opponents div
+                            $(".title").html("<h3>Scourges Remaining</h3>")
                 
                          
                             //update background color or some other element that shows a difference
@@ -115,6 +121,17 @@ var yourOpponent;
         
     startGame();  
    
+                $(document).on("click", "#fightbutton", function(){
+                    if($("#yourPlayer") !== "" && yourPlayer.Health > 0 &&  yourOpponent !== null) {
+                        var status = "";
+                        if(yourOpponent !== null) {
+                            yourOpponent.Health -= yourPlayer.Damage;
+                            status += "You used " + yourPlayer.Power + " on " + yourOpponent.Name + " for " + yourPlayer.Damage
+
+                            Alert("You used " + yourPlayer.Power + " on " + yourOpponent.Name + " for " + yourPlayer.Damage);
+                        }
+                    }
+                });
 
 
            

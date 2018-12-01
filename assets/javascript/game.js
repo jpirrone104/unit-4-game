@@ -4,64 +4,65 @@ $(document).ready(function() {
 
 //Global Variables
 
-var player1;
-var player2;
-var player3;
-var player4;
+var Automation;
+var Consumerism;
+var Social_Media;
+var Climate_Change;
 var availablePlayers;
-var yourPlayer;
-var opponents = [];
-var yourOpponent;
+var yourPlayer = null;
+var scourges = [];
+var yourOpponent = null;
+var wins = 0;
 
 
     function startGame() {
     //Objects holding the players
-            var player1 = {
+            var Automation = {
                 Id: 1,
                 Name: "Automation",
-                Health: 160,
-                Damage: 15,
+                Health: 150,
+                Damage: 25,
                 Image: "assets/images/robot.png",
                 ScourgePower: "Layoffs",
                 WeaponPower: "Renewable Energy",
 
             };
 
-            var player2 = {
+            var Consumerism = {
                 Id: 2,
                 Name: "Consumerism",
-                Health: 110,
-                Damage: 5,
+                Health: 130,
+                Damage: 30,
                 Image: "assets/images/kitty.png",
                 ScourgePower: "Crushing Debt",
                 WeaponPower: "Booming Economy",
             };
 
-            var player3 = {
+            var Social_Media = {
                 Id: 3,
                 Name: "Social Media",
                 Health: 140,
-                Damage: 10,
+                Damage: 20,
                 Image: "assets/images/wolf.png",
                 ScourgePower: "FOMO",
                 WeaponPower: "Retweet",
             };
 
-            var player4 = {
+            var Climate_Change = {
                 Id: 4,
                 Name: "Climate Change",
                 Health: 175,
-                Damage: 12,
+                Damage: 35,
                 Image: "assets/images/bunny.jpg",
                 ScourgePower: "Catastrophic Weather",
                 WeaponPower: "Rising Sea Levels",
              };
             
             //reset game variables
-            availablePlayers = [player1, player2, player3, player4];
+            availablePlayers = [Automation, Consumerism, Social_Media, Climate_Change];
             yourPlayer = null;
             yourOpponent = null;
-            opponents = [];
+            scourges = [];
         
 
             //clear all game play DIVs
@@ -73,24 +74,28 @@ var yourOpponent;
                 $.each(availablePlayers, function(index, yourPlayer) {
 
             
-                    var availPlayerDiv = $("<div>").addClass("player panel panel-success").attr("Id", yourPlayer.Id);
+                    var availPlayerDiv = $("<div>").addClass("player panel").attr({data: yourPlayer.Name, id: yourPlayer.Id} );
                     $("#availablePlayers").append(availPlayerDiv);
                     $("<div>").addClass("panel-heading").append(yourPlayer.Name).appendTo(availPlayerDiv);
                     $("<div>").addClass("panel-body").append("<img src=" + yourPlayer.Image + ">").appendTo(availPlayerDiv);
-                    $("<div>").addClass("panel-footer").append(yourPlayer.Health).appendTo(availPlayerDiv);
+                    $("<div>").addClass("panel-footer").append("Health: " + yourPlayer.Health).appendTo(availPlayerDiv);
                     
 
                 });
                 $(document).on("click", ".player", function() {
                     if(yourPlayer === null) {
-                        var charId = parseInt($(this).attr("Id"));
-
-                        yourPlayer = availablePlayers[charId];
                         
+                        var playerId = parseInt($(this).attr("Id"));
+                       
+                        
+                        yourPlayer = availablePlayers[playerId];
+                        
+                       
                         $.each(availablePlayers, function(index, yourPlayer) {
-                            if(yourPlayer.Id !== charId) {
+                            if(yourPlayer.Id !== playerId) {
+                                scourges.push(yourPlayer);
+                                console.log(scourges);
                                 $("#"+yourPlayer.Id).removeClass("player").addClass("remaining");
-                                alert("#"+yourPlayer.Id);
                             } else {
                                 $("#"+yourPlayer.Id).removeClass("player").addClass("inPlay").appendTo("#yourPlayer");
                             }
@@ -105,13 +110,9 @@ var yourOpponent;
                         //    var remainingPlayers = $(this).find(".player");
                         //    console.log(remainingPlayers);
                         //     $(remainingPlayers).attr("class","remaining");
-                        
-                            
-                    
-                       
-                                       
+         
                     }
-                        //replace available player div with opponents div
+                        //replace available player div with scourges div
             
                         $(".title").html("<h3>Select a Scourge to Destroy<h3>")
             
@@ -119,19 +120,19 @@ var yourOpponent;
 
                     $(document).on("click", ".remaining", function () {
                         if(yourOpponent === null) {
-                            yourOpponent = $(this);
-                            $(yourOpponent).attr("class", "battleMe")
-                            $("#yourOpponent").append(yourOpponent);
+
+                            var scourgeId = parseInt($(this).attr("id"));
                             
-                            
+                            yourOpponent = availablePlayers[scourgeId];
                             console.log($(this));
-                
-                            //replace opponents div with remaining opponents div
+						    $("#"+scourgeId).removeClass("remaining").addClass("battleMe").appendTo("#yourOpponent");
+                            // yourOpponent = $(this);
+                            // $(yourOpponent).attr("class", "battleMe")
+                            // $("#yourOpponent").append(yourOpponent);
+  
+                            //replace scourges div with remaining scourges div
                             $(".title").html("<h3>Scourges Remaining</h3>")
                 
-                         
-                            //update background color or some other element that shows a difference
-                            //center images
                         }
                     });
                     
@@ -140,15 +141,43 @@ var yourOpponent;
     startGame();  
    
                 $(document).on("click", "#fightbutton", function(){
-                    if($("#yourPlayer") !== "" && yourPlayer.Health > 0 &&  yourOpponent !== null) {
-                        var status = "";
-                        if(yourOpponent !== null) {
-                            yourOpponent.Health -= yourPlayer.Damage;
-                            status += "You used " + yourPlayer.Power + " on " + yourOpponent.Name + " for " + yourPlayer.Damage
+                    if(yourPlayer !== null && yourPlayer.Health > 0 && yourOpponent !== null) {
 
-                            Alert("You used " + yourPlayer.Power + " on " + yourOpponent.Name + " for " + yourPlayer.Damage);
+                        
+                            //update health for your Weapon
+                            yourPlayer.Health -= yourOpponent.Damage;
+                           
+
+                            //update health on DOM
+                            $("#yourPlayer").find(".panel-footer").html("Health: " + yourPlayer.Health);
+
+                             //update status and attack message
+                             $("#yourOpponentMessage").html("You used " + yourPlayer.WeaponPower + " for " + yourPlayer.Damage + " damage ");
+
+                                if (yourOpponent.Health >= 0 && wins < 3)    {
+                                    //update health for your opponent
+                                    yourOpponent.Health -= yourPlayer.Damage;
+
+                                    //update health on the DOM 
+                                    $("#yourOpponent").find(".panel-footer").html("Health: " + yourOpponent.Health);
+                                
+                                
+                                    //update status and attack messages
+                                    $("#yourPlayerMessage").html(yourOpponent.Name + " used " + yourOpponent.ScourgePower + " for " + yourOpponent.Damage + " damage ");
+                                } else {
+                                    $("#yourOpponent").hide();
+                                    $("#scourge").hide();
+                                    $("#yourOpponentMessage").html("<h3>You are one step closer - Please select another scourge to defeat!</h3>")
+                                    wins++
+                                    alert(wins);
+                                }
+
+
+                            if(yourPlayer.Health <= 0) {
+                                alert("You Lose!");
+                            }
                         }
-                    }
+                    
                 });
 
 
@@ -164,28 +193,3 @@ var yourOpponent;
 
 
 
-//Game variables to hold the attack, the player position, and function names
-
-//Start Game function 
-
-
-
-//Select a player function 
-
-//place the player in the battle area
-
-//select an opponent function
-
-//place the opponent in the battle area
-
-//calculate damage 
-
-//display attack status message
-
-//display win or lose message 
-
-//reset game function 
-
-//update HTML function 
-
-//onclick events 

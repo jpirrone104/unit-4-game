@@ -65,6 +65,7 @@ var wins = 0;
             yourPlayer = null;
             yourOpponent = null;
             scourges = [];
+            wins = 0;
         
 
             //clear all game play DIVs
@@ -74,8 +75,9 @@ var wins = 0;
             $("#yourPlayerMessage").empty();
             $("#yourOpponentMessage").empty();
             $("#restart").hide();
-            // $("#earth").hide();
+            $("#defeated").empty();
             $("#game").show();
+            
 
             // function addPlayers() {
                 $.each(availablePlayers, function(index, yourPlayer) {

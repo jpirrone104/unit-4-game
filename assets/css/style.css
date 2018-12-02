@@ -19,3 +19,10 @@ body {
 .defeated {
     display: none;
 }
+
+.reset {
+    position: fixed;
+    top: 50%;
+    bottom: 50%
+   
+}

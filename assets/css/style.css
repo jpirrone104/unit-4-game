@@ -1,3 +1,7 @@
+body {
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 .container {
     text-align: center;
     align-items: center;
@@ -11,3 +15,7 @@
 /* #battleground {
     margin-top: 10%;
 } */
+
+.defeated {
+    display: none;
+}

@@ -71,6 +71,8 @@ var wins = 0;
             $("#yourPlayer").empty();
             $("#yourOpponent").empty();
             $("#enemies").empty();
+            // $("#earth").hide();
+            // $("#game").show();
 
             // function addPlayers() {
                 $.each(availablePlayers, function(index, yourPlayer) {
@@ -87,7 +89,16 @@ var wins = 0;
     }
 
    
-                // $(document).on("click", "#fightbutton", 
+                function winner() {
+                    wins = $("#defeated div").length;
+                    console.log(wins)
+                    if(wins === 12) {
+                        alert("You've won the game!");
+                        // $("#game").hide();
+                        // $("#earth").show();
+                       
+                    }
+                };
                 
                 function fight() {
                     if((yourPlayer !== null && yourPlayer.Health > 0) && (yourOpponent !== null && yourOpponent.Health > 0) ) {
@@ -115,14 +126,23 @@ var wins = 0;
                                     yourPlayer.Damage += yourPlayer.Damage;
 
                                 } else if (yourOpponent.Health <= 0 && yourPlayer.Health > 0) {
-                                    $(".battleMe").hide();
+                                    console.log(yourOpponent);
+                                    $("#"+yourOpponent.Id).removeClass("battleMe").addClass("defeated").appendTo("#defeated");
+                                    $("#yourPlayerMessage").html("");
                                     $("#yourOpponentMessage").html("<h3>You are one step closer - Please select another scourge to defeat!</h3>");
                                     yourOpponent = null;
                                     console.log(yourOpponent);
+                                    winner();
+                                    
                                 }
                             if(yourPlayer.Health <= 0) {
-                                alert("You Lose!");
+                                $("#game").hide();
+                                alert("Oh No....you lose!");
+                                $("#earth").show();
+                                
+
                             }
+                           
                         }
                     
                     
@@ -130,10 +150,7 @@ var wins = 0;
                     startGame();
                 });
 
-                // $(document).on("click", "#fightbutton", function() {
-                //     fight();
-                // });
-
+              
                
                 $(document).on("click", ".player", function(){
                     if(yourPlayer === null) {
@@ -179,6 +196,7 @@ var wins = 0;
                                 
                             } else {
                                 $("#"+yourOpponent.Id).removeClass("remaining").addClass("battleMe").appendTo("#yourOpponent");
+                                $("#yourOpponentMessage").html("")
                                 $(".battleMe").show();
                                 
                             };
